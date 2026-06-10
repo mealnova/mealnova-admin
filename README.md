@@ -1,7 +1,7 @@
 # mealnova-admin
 
 Mealnova admin portal — Next.js 15 (App Router), Tailwind CSS v4, TanStack Query/Table.
-Auth-gated UI over [mealnova-api](https://github.com/yogeshn/mealnova-api). Runs on port **3001**.
+Auth-gated UI over [mealnova-api](https://github.com/mealnova/mealnova-api). Runs on port **3001**.
 
 ## Quickstart
 
@@ -15,7 +15,7 @@ pnpm dev                        # http://localhost:3001 → redirects to /login
 
 Consumed from the **committed `vendor/` copies** (`file:vendor/...`) — installs work in CI, Vercel,
 and fresh clones with no registry token. To pick up changes from
-[mealnova-shared](https://github.com/yogeshn/mealnova-shared):
+[mealnova-shared](https://github.com/mealnova/mealnova-shared):
 
 ```bash
 # with mealnova-shared cloned + built as a sibling directory
