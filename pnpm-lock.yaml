@@ -4,7 +4,7 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-pnpmfileChecksum: sha256-vIPEHVu8JeGViiRsXkw9BDHoKjArHMQytbsBK4TYg7M=
+pnpmfileChecksum: sha256-1QOvbV1a5stw06hE+00fQKTuSfij9SM14ffa7WPDGoM=
 
 importers:
 
@@ -14,8 +14,8 @@ importers:
         specifier: ^5
         version: 5.4.0(react-hook-form@7.78.0(react@19.2.7))
       '@mealnova/shared':
-        specifier: link:/Users/yogeshnitnaware/dev/mealnova-repos/mealnova-shared/packages/shared
-        version: link:../mealnova-shared/packages/shared
+        specifier: file:vendor/shared
+        version: file:vendor/shared
       '@radix-ui/react-avatar':
         specifier: ^1.1.11
         version: 1.1.12(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
@@ -318,6 +318,12 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@mealnova/shared@file:vendor/shared':
+    resolution: {directory: vendor/shared, type: directory}
+
+  '@mealnova/types@file:vendor/types':
+    resolution: {directory: vendor/types, type: directory}
 
   '@next/env@15.5.19':
     resolution: {integrity: sha512-sWWluFvcv5v3Fxznmf2ZfjyoVQt/64oCnYqS90inQWGzMPK1VjvekPiz3OPHKmFT30EnHrjlbyaHLt3M0vWabw==}
@@ -1527,6 +1533,12 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  '@mealnova/shared@file:vendor/shared':
+    dependencies:
+      '@mealnova/types': file:vendor/types
+
+  '@mealnova/types@file:vendor/types': {}
 
   '@next/env@15.5.19': {}
 

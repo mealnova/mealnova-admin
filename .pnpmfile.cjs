@@ -1,7 +1,9 @@
-// Local-dev convenience: when a sibling mealnova-shared checkout exists,
-// consume it via link: instead of the GitHub Packages registry.
-// CI/Vercel have no sibling checkout, so this hook is a no-op there and
-// the published @mealnova/* packages are used (auth via GITHUB_TOKEN).
+// @mealnova/* resolution strategy:
+//   default            -> committed vendor/ copies (file:vendor/...) — works in
+//                         CI, Vercel, and fresh clones with no registry token.
+//   MEALNOVA_LINK_SHARED=1 -> link: the sibling mealnova-shared checkout for
+//                         live local development (build it first). Note this
+//                         rewrites the lockfile; don't commit that churn.
 const { existsSync } = require("node:fs");
 const { resolve } = require("node:path");
 
@@ -12,6 +14,7 @@ const LOCAL = {
 };
 
 function readPackage(pkg) {
+  if (process.env.MEALNOVA_LINK_SHARED !== "1") return pkg;
   for (const [name, dir] of Object.entries(LOCAL)) {
     if (pkg.dependencies && pkg.dependencies[name] && existsSync(dir)) {
       pkg.dependencies[name] = `link:${dir}`;

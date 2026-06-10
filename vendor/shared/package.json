@@ -1,0 +1,18 @@
+{
+  "name": "@mealnova/shared",
+  "version": "0.1.0",
+  "description": "Shared content-shape utilities for the Mealnova platform",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mealnova/mealnova-shared.git",
+    "directory": "packages/shared"
+  },
+  "dependencies": {
+    "@mealnova/types": "file:../types"
+  }
+}

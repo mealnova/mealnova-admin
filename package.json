@@ -9,10 +9,11 @@
     "build": "next build",
     "start": "next start -p ${PORT:-3001}",
     "lint": "tsc --noEmit",
-    "clean": "rm -rf .next node_modules"
+    "clean": "rm -rf .next node_modules",
+    "vendor:update": "node scripts/vendor-shared.mjs"
   },
   "dependencies": {
-    "@mealnova/shared": "^0.1.0",
+    "@mealnova/shared": "file:vendor/shared",
     "@hookform/resolvers": "^5",
     "@radix-ui/react-avatar": "^1.1.11",
     "@radix-ui/react-checkbox": "^1.3.3",

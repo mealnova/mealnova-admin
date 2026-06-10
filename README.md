@@ -1,7 +1,7 @@
 # mealnova-admin
 
 Mealnova admin portal — Next.js 15 (App Router), Tailwind CSS v4, TanStack Query/Table.
-Auth-gated UI over [mealnova-api](https://github.com/mealnova/mealnova-api). Runs on port **3001**.
+Auth-gated UI over [mealnova-api](https://github.com/yogeshn/mealnova-api). Runs on port **3001**.
 
 ## Quickstart
 
@@ -13,10 +13,20 @@ pnpm dev                        # http://localhost:3001 → redirects to /login
 
 ## Shared packages (`@mealnova/shared`)
 
-Resolved from **GitHub Packages** (`.npmrc`, auth via `GITHUB_TOKEN` with `read:packages`).
-**Local development without a token:** clone
-[mealnova-shared](https://github.com/mealnova/mealnova-shared) as a **sibling** directory and build
-it once (`pnpm install && pnpm build`); the committed `.pnpmfile.cjs` links it automatically.
+Consumed from the **committed `vendor/` copies** (`file:vendor/...`) — installs work in CI, Vercel,
+and fresh clones with no registry token. To pick up changes from
+[mealnova-shared](https://github.com/yogeshn/mealnova-shared):
+
+```bash
+# with mealnova-shared cloned + built as a sibling directory
+pnpm vendor:update && pnpm install
+```
+
+For live local development against the sibling instead of the vendored copies, use
+`MEALNOVA_LINK_SHARED=1 pnpm install` (don't commit the resulting lockfile churn).
+
+> Once these repos move into the `mealnova` org, the deps can flip to the published
+> `@mealnova/*` GitHub Packages — the publish workflow is already committed in mealnova-shared.
 
 ## Commands
 
