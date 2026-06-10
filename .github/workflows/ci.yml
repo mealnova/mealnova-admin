@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      # Registry auth for @mealnova/* (GitHub Packages). Requires mealnova-shared
+      # to have published at least once (tag v* in that repo).
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NEXT_PUBLIC_API_URL: http://127.0.0.1:9/api/v1
+      INTERNAL_API_URL: http://127.0.0.1:9/api/v1
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.32.1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm lint
+
+      - name: Build
+        run: pnpm build
